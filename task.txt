@@ -1,0 +1,14 @@
+nav bar - https://www.pw.live/
+section - https://testbook.com/ssc-gd-constable/test-series
+forom - login - civic center login
+any 2 lms sites
+
+
+I believe udemy will be the best LMS platforom fi considering to upload the videos and 
+publish publicly because it provides userwise tracking of how much learning the user has 
+done and it also suggests the next courses to upskill and its certification.
+
+BUT 
+
+If we consider having a private platform then moodle can be the best because it can link the student to 
+the institutes page in moodle and alsi provides userwise tracking too and the design is elegant and user friendly

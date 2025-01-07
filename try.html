@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Centered Navigation Bar</title>
+  <style>
+    /* Basic Reset */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 10vh; /* Full height of the viewport */
+      background-color: #f0f0f0; /* Optional background color */
+    }
+
+    /* Navigation Bar Styling */
+    .navbar {
+      display: flex;
+      justify-content: top;
+      gap: 20px;
+      align-items: top;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar a {
+      color: black;
+      text-decoration: none;
+      padding: 10px 15px;
+      font-size: 16px;
+    }
+
+    .navbar a:hover {
+      background-color: #0056b3;
+      color: white;
+      border-radius: 5px;
+    }
+
+  
+    /* Styling for the All Courses Button with Blue Border */
+    .dropdown-trigger {
+      color: white;
+      font-size: 16px;
+      text-decoration: none;
+      cursor: pointer;
+      padding: 10px 15px;
+      border: 2px solid #0056b3; /* Blue border */
+      border-radius: 5px;
+     
+      display: flex;
+      align-items: center;
+      gap: 8px; /* Space between logo and text */
+    }
+
+    .dropdown-trigger img {
+      width: 20px; /* Logo size */
+      height: 20px;
+    }
+
+    .dropdown-trigger:hover {
+      background-color: #0056b3;
+    }
+
+    /* Dropdown Styling */
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 200px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+      border-radius: 5px;
+    }
+
+    .dropdown-content a {
+      color: black;
+      padding: 10px 15px;
+      text-decoration: none;
+      display: block;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .dropdown-content a:last-child {
+      border-bottom: none;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #f1f1f1;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    /* Submenu Styling */
+    .submenu {
+      position: relative;
+    }
+
+    .submenu-content {
+      display: none;
+      position: absolute;
+      left: 100%;
+      top: 0;
+      background-color: #f9f9f9;
+      min-width: 200px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      z-index: 2;
+      border-radius: 5px;
+    }
+
+    .submenu:hover .submenu-content {
+      display: block;
+    }
+
+    /* Login/Register Button Styling */
+    .login-register-btn {
+      color: white;
+      font-size: 16px;
+      text-decoration: none;
+      cursor: pointer;
+      padding: 10px 20px;
+      border: 2px solid #0056b3; /* Blue border */
+      border-radius: 5px;
+      background-color: #007BFF;
+    }
+
+    .login-register-btn:hover {
+      background-color: #0056b3;
+    }
+    img {
+      size: small;
+    }
+    .login-popup {
+      display: none; /* Hidden by default */
+      position: absolute;
+      top: 50px; /* Adjust position below the button */
+      right: 0;
+      background-color: white;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      width: 300px;
+      padding: 20px;
+      z-index: 10;
+    }
+
+    .login-register-btn:hover .login-popup {
+      display: block; /* Show popup on hover */
+    }
+
+    .login-popup h2 {
+      margin: 0 0 15px;
+      font-size: 20px;
+      text-align: center;
+    }
+
+    .login-popup input[type="email"],
+    .login-popup input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+
+    .login-popup button {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      background-color: #007BFF;
+      color: white;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .login-popup button:hover {
+      background-color: #0056b3;
+    }
+
+    .login-popup a {
+      font-size: 14px;
+      color: #007BFF;
+      text-decoration: none;
+      display: block;
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    .login-popup a:hover {
+      text-decoration: underline;
+    }
+
+    .login-register-btn {
+      color: white;
+      font-size: 16px;
+      text-decoration: none;
+      cursor: pointer;
+      padding: 10px 10px;
+      border: 2px solid #0056b3; /* Blue border */
+      border-radius: 5px;
+      background-color: #007BFF;
+      position: relative; /* For positioning the popup */
+    }
+
+    .login-register-btn:hover {
+      background-color: #0056b3;
+    }
+    /* Google Login Button */
+    .google-login {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #dd4b39;
+        color: white;
+        width: 100%;
+        padding: 12px;
+        border-radius: 5px;
+        font-size: 16px;
+        text-decoration: none;
+        margin-top: 10px;
+        cursor: pointer;
+      }
+
+      .google-login:hover {
+        background-color: #c23321;
+      }
+
+      .google-login i {
+        margin-right: 8px;
+      }
+
+      .text {
+        text-align: left;
+      }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <a>
+        <img src="#" alt="Logo"> <!-- Replace 'logo.png' with your logo file path -->
+    </a> 
+    <div class="dropdown">
+      <a class="dropdown-trigger">All Courses</a>
+      <div class="dropdown-content">
+        <div class="submenu">
+          <a href="#">Competitive Exams</a>
+          <div class="submenu-content">
+            <a href="#">IIT JEE</a>
+            <a href="#">NEET</a>
+            <a href="#">ESE</a>
+            <a href="#">GATE</a>
+            <a href="#">AE/JE</a>
+            <a href="#">Olympiad</a>
+          </div>
+        </div>
+        <div class="submenu">
+          <a href="#">Only IAS</a>
+          <div class="submenu-content">
+            <a href="#">UPSC</a>
+            <a href="#">State PSC</a>
+          </div>
+        </div>
+        <div class="submenu">
+          <a href="#">School Preparation</a>
+          <div class="submenu-content">
+            <a href="#">Foundation (Class 6-10)</a>
+            <a href="#">Commerce</a>
+            <a href="#">Arts</a>
+            <a href="#">CuriousJr(3rd-8th)</a>
+            <a href="#">Science</a>
+            <a href="#">International Boards</a>
+          </div>
+        </div>
+        <div class="submenu">
+          <a href="#">Govt Exam</a>
+          <div class="submenu-content">
+            <a href="#">SSC</a>
+            <a href="#">Banking</a>
+            <a href="#">Judiciary</a>
+            <a href="#">Teaching</a>
+            <a href="#">Railway</a>
+            <a href="#">UP Exams</a>
+            <a href="#">JAIIB & CAIIB</a>
+            <a href="#">BIHAR EXAMS WALLAH</a>
+            <a href="#">Nursing Exams</a>
+            <a href="#">WB Exams</a>
+            <a href="#">Defence</a>
+          </div>
+        </div>
+        <div class="submenu">
+          <a href="#">UG & PG Entrance Exams</a>
+          <div class="submenu-content">
+            <a href="#">MBA</a>
+            <a href="#">IPMAT</a>
+            <a href="#">IIT JAM</a>
+            <a href="#">CSIR NET</a>
+            <a href="#">LAW</a>
+            <a href="#">CUET</a>
+            <a href="#">UGC NET</a>
+            <a href="#">GMAT</a>
+            <a href="#">Design & Architecture</a>
+            <a href="#">CUET PG</a>
+            <a href="#">NEET PG</a>
+          </div>
+        </div>
+        <div class="submenu">
+          <a href="#">Finance</a>
+          <div class="submenu-content">
+            <a href="#">CA</a>
+            <a href="#">CS</a>
+          </div>
+        </div>
+        <div class="submenu">
+          <a href="#">Others</a>
+          <div class="submenu-content">
+            <a href="#">English Wallah</a>
+            <a href="#">Online Degrees</a>
+          </div>
+        </div>
+        <div class="submenu">
+          <a href="#">Study Abroad</a>
+          <div class="submenu-content">
+            <a href="#">IELTS</a>
+            <a href="#">TOEFL</a>
+            <a href="#">Acadfly MBBS Abroad</a>
+            <a href="#">Acadfly Study Abroad</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <a href="#">Vidyapeeth</a>
+    <a href="#">Upskilling - Job Assistance</a>
+    <a href="#">PW Store(Books)</a>
+    <a href="#">REAL Test</a>
+      <div class="login-register-btn">
+      Login / Register
+      <!-- Login Popup -->
+      <div class="login-popup">
+        <h2>Sign In</h2>
+        <form action="#" method="POST">
+          <input type="email" placeholder="Email" required>
+          <input type="password" placeholder="Password" required>
+          <button type="submit">Sign In</button>
+        </form>
+        <a href="#">Forgot Password?</a>
+        <a href="#">Sign Up</a>
+        <a href="#" class="google-login">
+          <i class="fa fa-google"></i> Login with Google
+        </a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
